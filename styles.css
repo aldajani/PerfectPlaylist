@@ -1,0 +1,149 @@
+.playlists-container, .songs-container {
+  padding: 1%;
+  min-width: 25%;
+  float: left;
+  height: 300px;
+  width: 40%;
+  overflow: auto;
+  background-color: #101010;
+  color: #faebd7;
+  border-radius: 1%;
+  box-shadow: 5px 5px 5px black;
+  font-family: arial;
+}
+
+.playlists-title, .songs-title {
+  width: 252px;
+  height: 40px;
+  display: inline-block;
+  border: 1px solid black;
+  text-align: center;
+  font-family: arial;
+  background-color: #101010;
+  border-bottom-color: grey;
+  color: #faebd7;
+  font-size: 120%;
+  border-radius: 3%;
+  line-height: 40px;
+  text-decoration: underline;
+  box-shadow: 5px 5px 5px black;
+}
+
+.playlists-container {
+  border-right: 1px solid black;
+  z-index: 10;
+}
+
+.songs-container {
+  border-left: 1px solid black;
+  z-index: 20;
+}
+
+.input-song-container, .current-playlist {
+  font-family: arial;
+}
+
+.input {
+  border: black;
+  background-color: #E6E8FA;
+  border-radius: 5%;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+}
+
+.current-playlist {
+  padding-bottom: 2%;
+}
+
+.input-playlist-container {
+  font-family: arial;
+  padding-bottom: 3%;
+  padding-top: 3%;
+  border-bottom: 2px solid black;
+}
+
+.info-container, .info-container-titles {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  border-radius: 1%;
+}
+
+.playlist-entry, .song-entry {
+  padding: 1%;
+  border-bottom: 1px solid grey;
+}
+
+.app-container, .app {
+  width: 600px;
+  height: 552px;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: #3B4990;
+}
+
+html {
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  background-color: #101010;
+  padding-top: 0.1%;
+  padding-bottom: 0.1%;
+  padding-left: 1%;
+  vertical-align: middle;
+}
+
+h3 {
+  color: #faebd7;
+  font-family: Arial;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  overflow-y: auto !important;
+}
+
+.modal-main {
+  position:fixed;
+  background: #101010;
+  height: 70%;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  text-align: center;
+  overflow-y: auto !important;
+}
+
+.display-block {
+  display: block;
+  overflow-y: auto !important;
+}
+
+.modal-albums {
+  overflow-y: auto !important;
+}
+
+.display-none {
+  display: none;
+}
+
+.modal-song-name {
+  color: #faebd7;
+  font-family: arial;
+}
