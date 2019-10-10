@@ -1,12 +1,13 @@
 /* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const path = require('path');
 const Axios = require('axios');
 const qs = require('querystring');
 
-require('../database-mongo/index.js');
-const Playlist = require('../database-mongo/models.js');
+require('../database/index.js');
+const Playlist = require('../database/models.js');
 const keys = require('../keys.js');
 
 const app = express();
@@ -17,8 +18,9 @@ const { clientSecret } = keys;
 const encodedData = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '/../react-client/dist')));
+app.use(express.static(path.join(__dirname, '/../client/dist')));
 
 app.get('/api/playlists', (req, res) => {
   Playlist.find((err, playlists) => {

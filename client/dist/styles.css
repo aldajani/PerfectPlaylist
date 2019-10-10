@@ -45,8 +45,28 @@
 
 .input {
   border: black;
-  background-color: #E6E8FA;
+  background-color: #faebd7;
   border-radius: 5%;
+}
+
+.iFrame {
+  padding: 2%;
+}
+
+.search-results {
+  display: flex;
+  font-family: arial;
+  justify-content: baseline;
+  color: #faebd7;
+  padding: 3%;
+  border-bottom: 1px solid grey;
+  z-index: 90;
+}
+
+.search-results-contents {
+  margin: 2%;
+  display: inline-block;
+  text-align: left;
 }
 
 #app {
@@ -116,27 +136,34 @@ h3 {
   background: rgba(0, 0, 0, 0.6);
   z-index: 100;
   overflow-y: auto !important;
+  overflow-x: scroll;
 }
 
 .modal-main {
   position:fixed;
   background: #101010;
-  height: 70%;
+  height: auto;
+  min-width: 30%;
+  min-height: 30%;
+  max-height: 70%;
   top:50%;
   left:50%;
   transform: translate(-50%, -50%);
   z-index: 100;
   text-align: center;
   overflow-y: auto !important;
+  overflow-x: scroll;
 }
 
 .display-block {
   display: block;
   overflow-y: auto !important;
+  overflow-x: scroll;
 }
 
-.modal-albums {
+.modal-contents {
   overflow-y: auto !important;
+  overflow-x: scroll;
 }
 
 .display-none {

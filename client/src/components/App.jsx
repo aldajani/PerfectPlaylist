@@ -19,7 +19,9 @@ class App extends React.Component {
       currentPlaylist: null,
       currentSong: null,
       show: false,
-      images: [],
+      tracks: [],
+      searchResults: [],
+      selectedSong: null,
     };
 
     this.updatePlaylists = this.updatePlaylists.bind(this);
@@ -27,6 +29,7 @@ class App extends React.Component {
     this.updateSongs = this.updateSongs.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.selectSong = this.selectSong.bind(this);
   }
 
   componentDidMount() {
@@ -41,10 +44,9 @@ class App extends React.Component {
       const { currentSong } = this.state;
       Axios.get(`/api/playlists/${currentSong}`)
         .then((response) => {
-          console.log(response.data.tracks.items);
           this.setState({
-            images: response.data.tracks.items,
-          });
+            searchResults: response.data.tracks.items,
+          })
         })
         .catch((err) => console.log(err));
     });
@@ -54,7 +56,14 @@ class App extends React.Component {
     this.setState({
       show: false,
       currentSong: null,
+      selectedSong: null,
     });
+  }
+
+  selectSong(e) {
+    this.setState({
+      selectedSong: e.target.id,
+    })
   }
 
   selectPlaylist(e) {
@@ -87,7 +96,7 @@ class App extends React.Component {
 
   render() {
     const {
-      playlists, playlistSelected, currentPlaylist, songs, show, currentSong, images,
+      playlists, playlistSelected, currentPlaylist, songs, show, currentSong, searchResults, selectedSong,
     } = this.state;
     return (
       <div className="app-container">
@@ -95,7 +104,9 @@ class App extends React.Component {
           show={show}
           handleClose={this.hideModal}
           song={currentSong}
-          albums={images}
+          searchResults={searchResults}
+          selectedSong={selectedSong}
+          selectSong={this.selectSong}
         />
         <div className="input-playlist-container">
           <InputPlaylist update={this.updatePlaylists} />

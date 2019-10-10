@@ -2,21 +2,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Modal = ({
-  handleClose, show, song, albums,
-}) => {
+const Modal = ({ handleClose, show, searchResults, selectedSong, selectSong}) => {
+  
+  let iFrame = null;
+  
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
-  const albumArt = albums.map((alb) => <img src={alb.album.images[1].url} alt={alb.album.id} />);
 
+  const songs = searchResults.map(result => {
+    return (
+      <div 
+        className='search-results'
+        key={result.uri}
+        id={result.uri}
+        onClick={selectSong}
+      >
+        <div className='search-results-contents' id={result.uri}>
+          <img src={result.album.images[2].url} id={result.uri} />
+        </div>
+        <div className='search-results-contents' id={result.uri}>
+          {result.name}<br />
+          {result.album.artists[0].name}<br />
+        </div>
+      </div>
+    )
+  });
+
+  const songList = (
+    <div className="modal-contents">
+      {songs}
+    </div>
+  )
+
+  if(selectedSong) {
+    iFrame = (
+      <div className='iFrame'>
+        <iframe
+          title="Spotify"
+          className="SpotifyPlayer"
+          src={`https://embed.spotify.com/?uri=${selectedSong}=list&theme=$black`}
+          width={300}
+          height={80}
+          frameBorder="0"
+          data-allow="encrypted-media"
+        />
+      </div>
+    );
+  }
+  
   return (
     <div className={showHideClassName}>
       <div className="modal-main">
-        <div className="modal-song-name">
-          {song}
-        </div>
-        <div className="modal-albums">
-          {albumArt}
-        </div>
+        {iFrame || songList}
         <button
           type="button"
           onClick={handleClose}
@@ -26,17 +62,15 @@ const Modal = ({
       </div>
     </div>
   );
-};
+}
 
 Modal.propTypes = {
   show: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  song: PropTypes.string,
   albums: PropTypes.array,
 };
 
 Modal.defaultProps = {
-  song: null,
   albums: [],
 };
 
