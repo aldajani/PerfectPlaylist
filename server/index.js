@@ -72,12 +72,10 @@ app.get('/api/playlists/:song', (req, res) => {
           res.status(200).send(result.data);
         })
         .catch((err) => {
-          console.log(err);
           res.status(500).send(err);
         });
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).send(err);
     });
 });
